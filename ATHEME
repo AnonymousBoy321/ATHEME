@@ -41,17 +41,17 @@ cmd(){
         echo -en -e "${green}# ${nc}"
         read cmd1
 
-        if [ $cmd1 = "ahelp" ]; then
+        if [[ $cmd1 == "ahelp" ]]; then
         echo -e "${bblue}[${blue}lc${bblue}] ${blue}list directory with color"
         echo -e "${bblue}[${blue}pic${bblue}] ${blue}package install with color"
         
-        elif [ $cmd1 = "exit" ]; then
+        elif [[ $cmd1 == "exit" ]]; then
         start
         
-        elif [ $cmd1 = "lc" ]; then
+        elif [[ $cmd1 == "lc" ]]; then
         ls | lolcat
         
-        elif [ $cmd1 = "pic" ]; then
+        elif [[ $cmd1 == "pic" ]]; then
         echo -en -e "${cyan}Enter package: ${nc}"
         read pwcn
         apt install $pwcn | lolcat
@@ -81,17 +81,17 @@ start(){
     echo -ne -e "${cyan}Enter option${yellow}: ${nc}"
     read optz
     
-    if [ $optz = "exit" ]; then
+    if [[ $optz == "exit" ]]; then
     echo -e "${red}See you"
     exit
     
-    elif [ $optz = "1" ]; then
+    elif [[ $optz == "1" ]]; then
     ddos
     
-    elif [ $optz = "c" ]; then
+    elif [[ $optz == "c" ]]; then
     cmd
     
-    elif [ $optz = "C" ]; then
+    elif [[ $optz == "C" ]]; then
     cmd
     
     else
