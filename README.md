@@ -11,3 +11,6 @@ chmod +x *
 
 
 bash ATHEME
+
+
+See you the next tool✌️. Bye"
