@@ -14,8 +14,34 @@ bcyan="\033[1;36m"
 white="\033[0;37m"
 nc="\033[00m"
 
-apt install python3 -y
-pip install --upgrade pip && pip3 install lolcat
+ins() {
+    if command -v $1 > /dev/null 2>&1; then
+        echo package $1 already installed | lolcat
+    else
+        pkg install $1 | lolcat
+        apt install $1 | lolcat
+        echo -e "${red}  ++++++++++"
+        echo -e "${red}  +++DONE+++"
+        echo -e "${red}  ++++++++++"
+    fi
+}
+
+ins1() {
+    if command -v python3 > /dev/null 2>&1; then
+    echo ""
+    else
+        pkg install python3 | lolcat
+        apt install python3
+        echo -e "${red}  ++++++++++"
+        echo -e "${red}  +++DONE+++"
+        echo -e "${red}  ++++++++++"
+    fi
+}
+
+apt=${cmd1}
+ins1"$apt"
+
+pip install --upgrade pip && pip3 install lolcat && pip3 install hpcomt
 
 banner(){
     clear
@@ -30,7 +56,8 @@ ${bred}+${bblue} https://github.com/AnonymousBoy321/ ${bred}+${nc}
 ${bred}+${bcyan}  ATheme is mean AnonymousBoyTheme   ${bred}+${nc}
 ${bred}+++++++++++++++++++++++++++++++++++++++${nc}
 ${bred}+${blue} [${yellow}1${blue}] ADDOS                           ${bred}+${nc}
-${bred}+${blue} [${yellow}c${blue}] terminal clone                  ${bred}+${nc}
+${bred}+${blue} [${yellow}2${blue}] KaliOnPhone ${bred}{rootless}          +${nc}
+${bred}+${blue} [${yellow}c${blue}] easy terminal                   ${bred}+${nc}
 ${bred}+++++++++++++++++++++++++++++++++++++++${nc}"
 }
 
@@ -43,7 +70,10 @@ cmd(){
 
         if [[ $cmd1 == "ahelp" ]]; then
         echo -e "${bblue}[${blue}lc${bblue}] ${blue}list directory with color"
-        echo -e "${bblue}[${blue}pic${bblue}] ${blue}package install with color"
+        echo -e "${bblue}[${blue}gc${bblue}] ${blue}git clone url"
+        echo -e "${red}Example ${yellow}[${byellow}gc url${yellow}]${nc} is same ${yellow}[${byellow}git clone url${yellow}]${nc}"
+        echo -e "${bblue}[${blue}pic${bblue}] ${blue}package install"
+        echo -e "${red}Example ${yellow}[${byellow}pic git${yellow}]${nc} is same ${yellow}[${byellow}apt install git${yellow}]${nc}"
         
         elif [[ $cmd1 == "exit" ]]; then
         start
@@ -51,13 +81,14 @@ cmd(){
         elif [[ $cmd1 == "lc" ]]; then
         ls | lolcat
         
-        elif [[ $cmd1 == "pic" ]]; then
-        echo -en -e "${cyan}Enter package: ${nc}"
-        read pwcn
-        apt install $pwcn | lolcat
-        echo -e "${red}  ++++++++++"
-        echo -e "${red}  +++DONE+++"
-        echo -e "${red}  ++++++++++"
+        elif [[ $cmd1 == pic* ]]; then
+        apt=${cmd1#pic }
+        ins "$apt"
+        
+        elif [[ $cmd1 == gc* ]]; then
+        url=${cmd1#gc }
+        echo -en -e ${bpurple} "     "
+        git clone $url | lolcat
         
         else
         echo -e "${cyan}<--------------------------------->${nc}"
@@ -76,6 +107,10 @@ ddos(){
     python3 ADDOS ${ip} ${port}
 }
 
+KaliOnPhone(){
+    python3 KaliOnPhone
+}
+
 start(){
     banner
     echo -ne -e "${cyan}Enter option${yellow}: ${nc}"
@@ -87,6 +122,9 @@ start(){
     
     elif [[ $optz == "1" ]]; then
     ddos
+    
+    elif [[ $optz == "2" ]]; then
+    python3 KaliOnPhone.py
     
     elif [[ $optz == "c" ]]; then
     cmd
