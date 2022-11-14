@@ -98,6 +98,17 @@ cmd(){
         git clone $url | lolcat
         echo -e "${cyan}<--------------------------------->${nc}"
         
+        elif [[ $cmd1 == "ls" ]]; then
+        echo -e "${red}<--------------------------------->${nc}"
+        echo -e "${cyan}use lc"
+        echo -e "${red}<--------------------------------->${nc}"
+        
+        elif [[ $cmd1 == git clone* ]]; then
+        url=${cmd1#git clone }
+        echo -e "${red}<--------------------------------->${nc}"
+        echo -e "${cyan}use gc"
+        echo -e "${red}<--------------------------------->${nc}"
+        
         else
         echo -e "${cyan}<--------------------------------->${nc}"
         ${cmd1}
