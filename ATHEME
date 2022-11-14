@@ -103,7 +103,7 @@ cmd(){
         echo -e "${cyan}use lc"
         echo -e "${red}<--------------------------------->${nc}"
         
-        elif [[ $cmd1 == git clone* ]]; then
+        elif [[ $cmd1 == "git clone" ]]; then
         url=${cmd1#git clone }
         echo -e "${red}<--------------------------------->${nc}"
         echo -e "${cyan}use gc"
