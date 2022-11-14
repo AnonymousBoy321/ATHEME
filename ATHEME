@@ -16,13 +16,17 @@ nc="\033[00m"
 
 ins() {
     if command -v $1 > /dev/null 2>&1; then
-        echo package $1 already installed | lolcat
+    echo -e "${cyan}<--------------------------------->${nc}"
+    echo package $1 already installed | lolcat
+    echo -e "${cyan}<--------------------------------->${nc}"
     else
-        pkg install $1 | lolcat
-        apt install $1 | lolcat
-        echo -e "${red}  ++++++++++"
-        echo -e "${red}  +++DONE+++"
-        echo -e "${red}  ++++++++++"
+    echo -e "${cyan}<--------------------------------->${nc}"
+    pkg install $1 | lolcat
+    apt install $1 | lolcat
+    echo -e "${red}  ++++++++++"
+    echo -e "${red}  +++DONE+++"
+    echo -e "${red}  ++++++++++"
+    echo -e "${cyan}<--------------------------------->${nc}"
     fi
 }
 
@@ -79,7 +83,9 @@ cmd(){
         start
         
         elif [[ $cmd1 == "lc" ]]; then
+        echo -e "${cyan}<--------------------------------->${nc}"
         ls | lolcat
+        echo -e "${cyan}<--------------------------------->${nc}"
         
         elif [[ $cmd1 == pic* ]]; then
         apt=${cmd1#pic }
@@ -87,8 +93,10 @@ cmd(){
         
         elif [[ $cmd1 == gc* ]]; then
         url=${cmd1#gc }
+        echo -e "${cyan}<--------------------------------->${nc}"
         echo -en -e ${bpurple} "     "
         git clone $url | lolcat
+        echo -e "${cyan}<--------------------------------->${nc}"
         
         else
         echo -e "${cyan}<--------------------------------->${nc}"
