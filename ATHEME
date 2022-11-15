@@ -143,7 +143,7 @@ start(){
     ddos
     
     elif [[ $optz == "2" ]]; then
-    python3 KaliOnPhone.py
+    python3 KaliOnPhone
     
     elif [[ $optz == "c" ]]; then
     cmd
